@@ -137,7 +137,7 @@ class logFile_t {
 
     //  printf("truncating\n");
     if ( ::ftruncate ( this->fd, this->bytes_written_so_far )) {
-      printf("logFile_t::close: error truncating file %s to %lld.\n", 
+      printf("logFile_t::close: error truncating file %s to %ld.\n", 
 	     this->filename.c_str(), this->bytes_written_so_far );
       return -1;
     }
@@ -146,7 +146,7 @@ class logFile_t {
     this->flush();
 
     if ( ::close ( this->fd ) ) {
-      printf("logFile_t::close: error closing file %s after %lld bytes written.\n", 
+      printf("logFile_t::close: error closing file %s after %ld bytes written.\n", 
 	     filename.c_str(), this->bytes_written_so_far );
       handle_error("close");
       return -1;
@@ -230,7 +230,7 @@ class logFile_t {
     if ( this->mmap_size >= 0 
 	 && ::munmap ( this->mmap_start_addr, this->mmap_size )) {
       printf( "logFile_t::munmap: Error munmapping\n");
-      printf( "logFile_t::munmap: Bytes written so far = %lld \n",
+      printf( "logFile_t::munmap: Bytes written so far = %ld \n",
 	      this->bytes_written_so_far );
       handle_error("munmap");
       return -1;
